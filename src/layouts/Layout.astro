@@ -1,0 +1,39 @@
+---
+interface Props {
+    title: string;
+    description?: string;
+}
+
+const {
+    title,
+    description = "ClearLaunch – Confident product launches for busy founders",
+} = Astro.props;
+
+import CookieConsent from "../components/CookieConsent.astro";
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content={description} />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"
+        ></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                lucide.createIcons();
+            });
+        </script>
+    </head>
+    <body
+        class="min-h-screen bg-slate-950 text-slate-100 antialiased selection:bg-sky-500/30"
+    >
+        <slot />
+        <CookieConsent />
+    </body>
+</html>

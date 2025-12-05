@@ -1,16 +1,787 @@
 ---
-
+import Layout from "../layouts/Layout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="ClearLaunch – Confident product launches for busy founders">
+  <div class="flex flex-col min-h-screen">
+    <!-- Navigation -->
+    <header
+      class="border-b border-slate-800/50 backdrop-blur-md sticky top-0 z-50 bg-slate-950/80"
+    >
+      <div
+        class="max-w-5xl mx-auto flex items-center justify-between gap-6 py-4 px-4 sm:px-6"
+      >
+        <!-- Logo -->
+        <div class="flex items-center gap-2">
+          <div
+            class="h-8 w-8 rounded-full bg-gradient-to-tr from-indigo-500 via-sky-500 to-emerald-400 flex items-center justify-center shadow-lg shadow-indigo-500/20"
+          >
+            <span
+              class="text-xs font-bold tracking-tight text-slate-950 font-sans"
+              >CL</span
+            >
+          </div>
+          <span class="text-base font-bold tracking-tight font-sans"
+            >ClearLaunch</span
+          >
+        </div>
+
+        <!-- Nav Links -->
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+          <a
+            href="#how-it-works"
+            class="text-slate-400 hover:text-sky-400 transition-colors"
+            >How it works</a
+          >
+          <a
+            href="#features"
+            class="text-slate-400 hover:text-sky-400 transition-colors"
+            >Features</a
+          >
+          <a
+            href="#pricing"
+            class="text-slate-400 hover:text-sky-400 transition-colors"
+            >Pricing</a
+          >
+        </nav>
+
+        <!-- CTA -->
+        <div class="flex items-center gap-4">
+          <a
+            href="#hero-form"
+            class="inline-flex items-center gap-2 rounded-full bg-slate-50 text-slate-950 text-sm font-semibold tracking-tight px-4 py-2 hover:bg-white hover:scale-105 transition-all shadow-lg shadow-slate-50/10"
+          >
+            Get early access
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1">
+      <!-- Hero -->
+      <section class="relative overflow-hidden pt-20 pb-24 sm:pt-32 sm:pb-40">
+        <!-- Background accents -->
+        <div class="absolute inset-0 -z-10 overflow-hidden">
+          <div
+            class="absolute top-0 left-1/2 -translate-x-1/2 h-[500px] w-[800px] rounded-full bg-indigo-500/10 blur-[100px]"
+          >
+          </div>
+          <div
+            class="absolute bottom-0 left-1/2 -translate-x-1/2 h-[400px] w-[600px] rounded-full bg-sky-500/10 blur-[80px]"
+          >
+          </div>
+        </div>
+
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center space-y-8">
+          <div
+            class="inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-900/50 px-3 py-1 text-xs font-medium text-slate-300 backdrop-blur-sm"
+          >
+            <span class="relative flex h-2 w-2">
+              <span
+                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+              ></span>
+              <span
+                class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"
+              ></span>
+            </span>
+            Accepting early access users
+          </div>
+
+          <h1
+            class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-slate-50 leading-[1.1]"
+          >
+            Launch with a <br class="hidden sm:block" />
+            <span
+              class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-400 to-emerald-400"
+              >clear plan.</span
+            >
+          </h1>
+
+          <p
+            class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed"
+          >
+            Stop guessing. ClearLaunch builds a step‑by‑step marketing schedule
+            tailored to your product, audience, and launch date.
+          </p>
+
+          <div class="max-w-md mx-auto pt-4" id="hero-form">
+            <form id="signup-form" class="flex flex-col sm:flex-row gap-3">
+              <div class="flex-1 relative group">
+                <div
+                  class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                >
+                  <svg
+                    class="h-5 w-5 text-slate-500 group-focus-within:text-sky-400 transition-colors"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                </div>
+                <input
+                  id="signup-email"
+                  type="email"
+                  placeholder="Enter your work email"
+                  class="block w-full pl-10 pr-3 py-3 border border-slate-700 rounded-lg leading-5 bg-slate-900/50 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-sky-500/50 focus:border-sky-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  required
+                />
+              </div>
+              <button
+                id="signup-button"
+                type="submit"
+                class="inline-flex items-center justify-center px-6 py-2.5 border border-transparent text-base font-semibold rounded-lg text-slate-950 bg-sky-500 hover:bg-sky-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 focus:ring-offset-slate-900 transition-all shadow-lg shadow-sky-500/20 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <span id="signup-button-text">Get early access</span>
+                <svg
+                  id="signup-spinner"
+                  class="hidden w-5 h-5 ml-2 animate-spin"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    class="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    stroke-width="4"></circle>
+                  <path
+                    class="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+              </button>
+            </form>
+            <div id="signup-message" class="mt-3 text-xs hidden"></div>
+            <p class="mt-3 text-xs text-slate-500">
+              Free to start. No credit card required.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- How it works -->
+      <section
+        id="how-it-works"
+        class="py-20 sm:py-32 border-t border-slate-800/50 bg-slate-950/50"
+      >
+        <div class="max-w-5xl mx-auto px-4 sm:px-6">
+          <div class="text-center max-w-2xl mx-auto mb-16">
+            <h2
+              class="text-3xl sm:text-4xl font-bold tracking-tight text-slate-50 mb-4"
+            >
+              Your launch, demystified.
+            </h2>
+            <p class="text-slate-400 text-lg">
+              Three simple steps to go from "what do I post?" to a fully
+              executed launch.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-12 relative">
+            <!-- Connecting line (desktop) -->
+            <div
+              class="hidden md:block absolute top-12 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-slate-800 to-transparent -z-10"
+            >
+            </div>
+
+            <!-- Step 1 -->
+            <div
+              class="relative flex flex-col items-center text-center space-y-4"
+            >
+              <div
+                class="h-24 w-24 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center shadow-xl shadow-black/50 mb-2 group hover:border-sky-500/50 transition-colors"
+              >
+                <svg
+                  data-lucide="clipboard-list"
+                  class="w-10 h-10 text-sky-400 group-hover:scale-110 transition-transform duration-300"
+                  stroke-width="1.5"></svg>
+              </div>
+              <h3 class="text-xl font-semibold text-slate-100">
+                1. Define Goal
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed max-w-xs">
+                Tell us what you're launching and when. We support products,
+                features, and waitlists.
+              </p>
+            </div>
+
+            <!-- Step 2 -->
+            <div
+              class="relative flex flex-col items-center text-center space-y-4"
+            >
+              <div
+                class="h-24 w-24 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center shadow-xl shadow-black/50 mb-2 group hover:border-indigo-500/50 transition-colors"
+              >
+                <svg
+                  data-lucide="share-2"
+                  class="w-10 h-10 text-indigo-400 group-hover:scale-110 transition-transform duration-300"
+                  stroke-width="1.5"></svg>
+              </div>
+              <h3 class="text-xl font-semibold text-slate-100">
+                2. Select Channels
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed max-w-xs">
+                Choose where your audience lives. We'll balance the frequency so
+                you don't burn them out.
+              </p>
+            </div>
+
+            <!-- Step 3 -->
+            <div
+              class="relative flex flex-col items-center text-center space-y-4"
+            >
+              <div
+                class="h-24 w-24 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center shadow-xl shadow-black/50 mb-2 group hover:border-emerald-500/50 transition-colors"
+              >
+                <svg
+                  data-lucide="calendar-check"
+                  class="w-10 h-10 text-emerald-400 group-hover:scale-110 transition-transform duration-300"
+                  stroke-width="1.5"></svg>
+              </div>
+              <h3 class="text-xl font-semibold text-slate-100">
+                3. Execute Plan
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed max-w-xs">
+                Get a day-by-day checklist with content ideas, best times to
+                post, and reminders.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section id="features" class="py-20 sm:py-32">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6">
+          <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+              <h2
+                class="text-3xl sm:text-4xl font-bold tracking-tight text-slate-50"
+              >
+                Everything you need to launch without the stress.
+              </h2>
+              <div class="space-y-6">
+                <div class="flex gap-4">
+                  <div
+                    class="flex-shrink-0 h-10 w-10 rounded-lg bg-sky-500/10 flex items-center justify-center"
+                  >
+                    <svg
+                      data-lucide="clock"
+                      class="w-5 h-5 text-sky-400"
+                      stroke-width="2"></svg>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-semibold text-slate-100">
+                      Smart Timing
+                    </h3>
+                    <p class="text-slate-400 text-sm mt-1">
+                      We calculate the best posting windows based on your
+                      specific audience demographics.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex gap-4">
+                  <div
+                    class="flex-shrink-0 h-10 w-10 rounded-lg bg-indigo-500/10 flex items-center justify-center"
+                  >
+                    <svg
+                      data-lucide="sparkles"
+                      class="w-5 h-5 text-indigo-400"
+                      stroke-width="2"></svg>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-semibold text-slate-100">
+                      AI Content Ideas
+                    </h3>
+                    <p class="text-slate-400 text-sm mt-1">
+                      Stuck on what to write? Get instant, high-converting hooks
+                      and outlines for every post.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex gap-4">
+                  <div
+                    class="flex-shrink-0 h-10 w-10 rounded-lg bg-emerald-500/10 flex items-center justify-center"
+                  >
+                    <svg
+                      data-lucide="users"
+                      class="w-5 h-5 text-emerald-400"
+                      stroke-width="2"></svg>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-semibold text-slate-100">
+                      Launch Roadmap
+                    </h3>
+                    <p class="text-slate-400 text-sm mt-1">
+                      Visualise your entire launch timeline from start to
+                      finish, so you never miss a beat.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Simplified Feature Visual -->
+            <div class="relative">
+              <div
+                class="absolute inset-0 bg-gradient-to-tr from-sky-500/20 to-emerald-500/20 rounded-3xl blur-2xl"
+              >
+              </div>
+              <div
+                class="relative rounded-2xl border border-slate-800 bg-slate-900/90 p-6 shadow-2xl"
+              >
+                <div class="space-y-4">
+                  <div
+                    class="flex items-center justify-between border-b border-slate-800 pb-4"
+                  >
+                    <div class="flex items-center gap-3">
+                      <div class="h-3 w-3 rounded-full bg-red-500"></div>
+                      <div class="h-3 w-3 rounded-full bg-yellow-500"></div>
+                      <div class="h-3 w-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <div class="text-xs text-slate-500 font-mono">
+                      launch-plan.json
+                    </div>
+                  </div>
+                  <div class="space-y-3">
+                    <div
+                      class="flex items-center gap-3 p-3 rounded-lg bg-slate-950/50 border border-slate-800/50"
+                    >
+                      <div
+                        class="h-8 w-8 rounded bg-sky-500/20 flex items-center justify-center text-sky-400"
+                      >
+                        <svg data-lucide="twitter" class="w-4 h-4"></svg>
+                      </div>
+                      <div class="flex-1">
+                        <div class="h-2 w-24 bg-slate-800 rounded mb-1.5"></div>
+                        <div class="h-1.5 w-16 bg-slate-800/60 rounded"></div>
+                      </div>
+                      <div class="text-xs text-emerald-400 font-medium">
+                        Ready
+                      </div>
+                    </div>
+                    <div
+                      class="flex items-center gap-3 p-3 rounded-lg bg-slate-950/50 border border-slate-800/50"
+                    >
+                      <div
+                        class="h-8 w-8 rounded bg-indigo-500/20 flex items-center justify-center text-indigo-400"
+                      >
+                        <svg data-lucide="linkedin" class="w-4 h-4"></svg>
+                      </div>
+                      <div class="flex-1">
+                        <div class="h-2 w-32 bg-slate-800 rounded mb-1.5"></div>
+                        <div class="h-1.5 w-20 bg-slate-800/60 rounded"></div>
+                      </div>
+                      <div class="text-xs text-amber-400 font-medium">
+                        Drafting
+                      </div>
+                    </div>
+                    <div
+                      class="flex items-center gap-3 p-3 rounded-lg bg-slate-950/50 border border-slate-800/50"
+                    >
+                      <div
+                        class="h-8 w-8 rounded bg-pink-500/20 flex items-center justify-center text-pink-400"
+                      >
+                        <svg data-lucide="instagram" class="w-4 h-4"></svg>
+                      </div>
+                      <div class="flex-1">
+                        <div class="h-2 w-28 bg-slate-800 rounded mb-1.5"></div>
+                        <div class="h-1.5 w-12 bg-slate-800/60 rounded"></div>
+                      </div>
+                      <div class="text-xs text-slate-500 font-medium">
+                        Scheduled
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing -->
+      <section
+        id="pricing"
+        class="py-20 sm:py-32 border-t border-slate-800/50 bg-slate-950/50"
+      >
+        <div class="max-w-5xl mx-auto px-4 sm:px-6">
+          <div class="text-center max-w-2xl mx-auto mb-16">
+            <h2
+              class="text-3xl sm:text-4xl font-bold tracking-tight text-slate-50 mb-4"
+            >
+              Simple pricing.
+            </h2>
+            <p class="text-slate-400 text-lg">
+              Start for free. Upgrade when you need more power.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <!-- Free -->
+            <div
+              class="rounded-2xl border border-slate-800 bg-slate-900/50 p-8 flex flex-col"
+            >
+              <h3 class="text-lg font-semibold text-slate-100">Free</h3>
+              <div class="mt-4 flex items-baseline text-slate-100">
+                <span class="text-4xl font-bold tracking-tight">£0</span>
+                <span class="ml-1 text-xl font-semibold text-slate-500"
+                  >/mo</span
+                >
+              </div>
+              <p class="mt-4 text-sm text-slate-400">
+                Perfect for getting started.
+              </p>
+              <ul class="mt-8 space-y-4 flex-1">
+                <li class="flex items-center gap-3 text-sm text-slate-300">
+                  <svg
+                    data-lucide="check"
+                    class="w-5 h-5 text-emerald-400 flex-shrink-0"></svg>
+                  1 active launch
+                </li>
+                <li class="flex items-center gap-3 text-sm text-slate-300">
+                  <svg
+                    data-lucide="check"
+                    class="w-5 h-5 text-emerald-400 flex-shrink-0"></svg>
+                  3 plan regenerations per month
+                </li>
+                <li class="flex items-center gap-3 text-sm text-slate-300">
+                  <svg
+                    data-lucide="check"
+                    class="w-5 h-5 text-emerald-400 flex-shrink-0"></svg>
+                  Manual task changes only
+                </li>
+                <li class="flex items-center gap-3 text-sm text-slate-300">
+                  <svg
+                    data-lucide="check"
+                    class="w-5 h-5 text-emerald-400 flex-shrink-0"></svg>
+                  AI task tools greyed out
+                </li>
+              </ul>
+            </div>
+
+            <!-- Pro -->
+            <div
+              class="rounded-2xl border border-sky-500/50 bg-slate-900/80 p-8 flex flex-col relative shadow-xl shadow-sky-900/20"
+            >
+              <div
+                class="absolute -top-4 left-1/2 -translate-x-1/2 inline-flex items-center rounded-full bg-sky-500 px-3 py-1 text-xs font-semibold text-slate-950"
+              >
+                Most Popular
+              </div>
+              <h3 class="text-lg font-semibold text-slate-100">Pro</h3>
+              <div class="mt-4 flex items-baseline text-slate-100">
+                <span class="text-4xl font-bold tracking-tight">£10</span>
+                <span class="ml-1 text-xl font-semibold text-slate-500"
+                  >/mo</span
+                >
+              </div>
+              <p class="mt-4 text-sm text-slate-400">For growing businesses.</p>
+              <ul class="mt-8 space-y-4 flex-1">
+                <li class="flex items-center gap-3 text-sm text-slate-300">
+                  <svg
+                    data-lucide="check"
+                    class="w-5 h-5 text-sky-400 flex-shrink-0"></svg>
+                  3 active launches
+                </li>
+                <li class="flex items-center gap-3 text-sm text-slate-300">
+                  <svg
+                    data-lucide="check"
+                    class="w-5 h-5 text-sky-400 flex-shrink-0"></svg>
+                  100 AI calls/month
+                </li>
+                <li class="flex items-center gap-3 text-sm text-slate-300">
+                  <svg
+                    data-lucide="check"
+                    class="w-5 h-5 text-sky-400 flex-shrink-0"></svg>
+                  Full AI access
+                </li>
+                <li class="flex items-center gap-3 text-sm text-slate-300">
+                  <svg
+                    data-lucide="check"
+                    class="w-5 h-5 text-sky-400 flex-shrink-0"></svg>
+                  Task rewrites
+                </li>
+                <li class="flex items-center gap-3 text-sm text-slate-300">
+                  <svg
+                    data-lucide="check"
+                    class="w-5 h-5 text-sky-400 flex-shrink-0"></svg>
+                  Post generation
+                </li>
+                <li class="flex items-center gap-3 text-sm text-slate-300">
+                  <svg
+                    data-lucide="check"
+                    class="w-5 h-5 text-sky-400 flex-shrink-0"></svg>
+                  Idea generation
+                </li>
+                <li class="flex items-center gap-3 text-sm text-slate-300">
+                  <svg
+                    data-lucide="check"
+                    class="w-5 h-5 text-sky-400 flex-shrink-0"></svg>
+                  Content assist
+                </li>
+                <li class="flex items-center gap-3 text-sm text-slate-300">
+                  <svg
+                    data-lucide="check"
+                    class="w-5 h-5 text-sky-400 flex-shrink-0"></svg>
+                  Rewrite/refine steps
+                </li>
+                <li class="flex items-center gap-3 text-sm text-slate-300">
+                  <svg
+                    data-lucide="check"
+                    class="w-5 h-5 text-sky-400 flex-shrink-0"></svg>
+                  Basic analytics
+                </li>
+              </ul>
+            </div>
+
+            <!-- Power -->
+            <div
+              class="rounded-2xl border border-slate-800 bg-slate-900/50 p-8 flex flex-col"
+            >
+              <h3 class="text-lg font-semibold text-slate-100">Power</h3>
+              <div class="mt-4 flex items-baseline text-slate-100">
+                <span class="text-4xl font-bold tracking-tight">£30</span>
+                <span class="ml-1 text-xl font-semibold text-slate-500"
+                  >/mo</span
+                >
+              </div>
+              <p class="mt-4 text-sm text-slate-400">
+                For power users and agencies.
+              </p>
+              <ul class="mt-8 space-y-4 flex-1">
+                <li class="flex items-center gap-3 text-sm text-slate-300">
+                  <svg
+                    data-lucide="check"
+                    class="w-5 h-5 text-emerald-400 flex-shrink-0"></svg>
+                  10 active launches
+                </li>
+                <li class="flex items-center gap-3 text-sm text-slate-300">
+                  <svg
+                    data-lucide="check"
+                    class="w-5 h-5 text-emerald-400 flex-shrink-0"></svg>
+                  300 AI calls/month
+                </li>
+                <li class="flex items-center gap-3 text-sm text-slate-300">
+                  <svg
+                    data-lucide="check"
+                    class="w-5 h-5 text-emerald-400 flex-shrink-0"></svg>
+                  All templates
+                </li>
+                <li class="flex items-center gap-3 text-sm text-slate-300">
+                  <svg
+                    data-lucide="check"
+                    class="w-5 h-5 text-emerald-400 flex-shrink-0"></svg>
+                  Priority AI access
+                </li>
+                <li class="flex items-center gap-3 text-sm text-slate-300">
+                  <svg
+                    data-lucide="check"
+                    class="w-5 h-5 text-emerald-400 flex-shrink-0"></svg>
+                  Advanced analytics
+                </li>
+                <li class="flex items-center gap-3 text-sm text-slate-300">
+                  <svg
+                    data-lucide="check"
+                    class="w-5 h-5 text-emerald-400 flex-shrink-0"></svg>
+                  Dedicated support
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</Layout>
+
+<!-- FAQ -->
+<section id="faq" class="py-20 sm:py-32 border-t border-slate-800/50">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6">
+    <h2
+      class="text-3xl font-bold tracking-tight text-slate-50 text-center mb-12"
+    >
+      Frequently asked questions
+    </h2>
+
+    <div class="space-y-4">
+      <details
+        class="group rounded-xl bg-slate-900/50 border border-slate-800 p-6 [&_summary::-webkit-details-marker]:hidden"
+      >
+        <summary
+          class="flex cursor-pointer items-center justify-between gap-1.5 text-slate-100 font-medium"
+        >
+          How does ClearLaunch decide when to post?
+          <svg
+            data-lucide="chevron-down"
+            class="h-5 w-5 shrink-0 transition duration-300 group-open:-rotate-180 text-slate-400"
+          ></svg>
+        </summary>
+        <p class="mt-4 leading-relaxed text-slate-400 text-sm">
+          ClearLaunch uses a mix of public engagement benchmarks,
+          platform‑specific best practices, and your launch window to propose
+          posting times. You can also override any suggestion manually.
+        </p>
+      </details>
+
+      <details
+        class="group rounded-xl bg-slate-900/50 border border-slate-800 p-6 [&_summary::-webkit-details-marker]:hidden"
+      >
+        <summary
+          class="flex cursor-pointer items-center justify-between gap-1.5 text-slate-100 font-medium"
+        >
+          Do I need to connect my social media accounts?
+          <svg
+            data-lucide="chevron-down"
+            class="h-5 w-5 shrink-0 transition duration-300 group-open:-rotate-180 text-slate-400"
+          ></svg>
+        </summary>
+        <p class="mt-4 leading-relaxed text-slate-400 text-sm">
+          No. ClearLaunch can be used purely as a planning tool. Connecting
+          platforms lets you send scheduled posts or track performance more
+          easily, but it’s optional.
+        </p>
+      </details>
+
+      <details
+        class="group rounded-xl bg-slate-900/50 border border-slate-800 p-6 [&_summary::-webkit-details-marker]:hidden"
+      >
+        <summary
+          class="flex cursor-pointer items-center justify-between gap-1.5 text-slate-100 font-medium"
+        >
+          What if my launch date moves?
+          <svg
+            data-lucide="chevron-down"
+            class="h-5 w-5 shrink-0 transition duration-300 group-open:-rotate-180 text-slate-400"
+          ></svg>
+        </summary>
+        <p class="mt-4 leading-relaxed text-slate-400 text-sm">
+          Adjust your launch date and ClearLaunch will shift your entire
+          plan—pre‑launch, launch day, and post‑launch follow‑ups—while keeping
+          the structure intact.
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-slate-800/50 bg-slate-950 py-12">
+  <div
+    class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-6"
+  >
+    <div class="flex items-center gap-2">
+      <div
+        class="h-6 w-6 rounded-full bg-gradient-to-tr from-indigo-500 via-sky-500 to-emerald-400 flex items-center justify-center"
+      >
+        <span class="text-[10px] font-bold text-slate-950 font-sans">CL</span>
+      </div>
+      <span class="text-sm font-semibold text-slate-300">ClearLaunch</span>
+    </div>
+    <p class="text-sm text-slate-500 flex gap-4">
+      <a href="/privacy-policy" class="hover:text-slate-300 transition-colors"
+        >Privacy Policy</a
+      >
+      <a href="/terms-of-service" class="hover:text-slate-300 transition-colors"
+        >Terms of Service</a
+      >
+      <span
+        >© {new Date().getFullYear()} ClearLaunch. All rights reserved.</span
+      >
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Get API URL from environment or use default
+  const API_BASE_URL =
+    import.meta.env.PUBLIC_API_URL || "http://localhost:3000";
+
+  const form = document.getElementById("signup-form");
+  const emailInput = document.getElementById("signup-email");
+  const submitButton = document.getElementById("signup-button");
+  const buttonText = document.getElementById("signup-button-text");
+  const spinner = document.getElementById("signup-spinner");
+  const messageDiv = document.getElementById("signup-message");
+
+  function setLoading(isLoading) {
+    if (submitButton) submitButton.disabled = isLoading;
+    if (emailInput) emailInput.disabled = isLoading;
+    if (spinner) spinner.classList.toggle("hidden", !isLoading);
+    if (buttonText) {
+      buttonText.textContent = isLoading ? "Signing up..." : "Get early access";
+    }
+  }
+
+  function showMessage(text, type) {
+    if (!messageDiv) return;
+    messageDiv.textContent = text;
+    messageDiv.className = `mt-3 text-xs ${type === "success" ? "text-emerald-400" : "text-red-400"}`;
+    messageDiv.classList.remove("hidden");
+  }
+
+  function hideMessage() {
+    if (messageDiv) {
+      messageDiv.classList.add("hidden");
+      messageDiv.textContent = "";
+    }
+  }
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      hideMessage();
+
+      const email = emailInput?.value?.trim();
+
+      if (!email) {
+        showMessage("Please enter your email address.", "error");
+        return;
+      }
+
+      setLoading(true);
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/signup`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || "Failed to sign up");
+        }
+
+        // Success
+        showMessage("Thanks! We'll be in touch soon.", "success");
+        if (emailInput) emailInput.value = "";
+
+        // Hide message after 5 seconds
+        setTimeout(() => {
+          hideMessage();
+        }, 5000);
+      } catch (error) {
+        console.error("Signup error:", error);
+        showMessage(
+          error instanceof Error
+            ? error.message
+            : "Something went wrong. Please try again.",
+          "error",
+        );
+      } finally {
+        setLoading(false);
+      }
+    });
+  }
+</script>
