@@ -11,6 +11,7 @@ const {
 
 import CookieConsent from "../components/CookieConsent.astro";
 import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 ---
 
 <!doctype html>
@@ -31,6 +32,7 @@ import Analytics from '@vercel/analytics/astro';
             });
         </script>
         <Analytics />
+        <SpeedInsights />
     </head>
     <body
         class="min-h-screen bg-slate-950 text-slate-100 antialiased selection:bg-sky-500/30"
