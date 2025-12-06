@@ -700,9 +700,9 @@ import Layout from "../layouts/Layout.astro";
 </footer>
 
 <script>
-  // Get API URL from environment or detect from current domain
+  // Get API URL from environment or use default
   // IMPORTANT: Set PUBLIC_API_URL in Vercel environment variables for the marketing site
-  // This should be your Next.js app's production URL (e.g., https://your-app.vercel.app)
+  // Default is the Vercel app URL, but you can override with PUBLIC_API_URL
   function getApiUrl() {
     // First, try environment variable (set in Vercel)
     if (import.meta.env.PUBLIC_API_URL) {
@@ -710,25 +710,19 @@ import Layout from "../layouts/Layout.astro";
       return import.meta.env.PUBLIC_API_URL;
     }
     
-    // In production, try to detect app URL based on current domain
-    // NOTE: This is a fallback - you should set PUBLIC_API_URL in Vercel!
-    const hostname = window.location.hostname;
-    const isProduction = hostname !== "localhost" && !hostname.includes("127.0.0.1");
+    // Check if we're in development
+    const hostname = typeof window !== "undefined" ? window.location.hostname : "";
+    const isDevelopment = hostname === "localhost" || hostname.includes("127.0.0.1");
     
-    if (isProduction) {
-      // Try common patterns
-      if (hostname.includes("clearlaunch.co.uk")) {
-        // Try app subdomain
-        const appSubdomain = "https://app.clearlaunch.co.uk";
-        console.warn("PUBLIC_API_URL not set! Guessing app URL:", appSubdomain);
-        console.warn("Please set PUBLIC_API_URL in Vercel environment variables!");
-        return appSubdomain;
-      }
+    if (isDevelopment) {
+      console.log("Using localhost for development");
+      return "http://localhost:3000";
     }
     
-    // Development fallback
-    console.log("Using localhost for development");
-    return "http://localhost:3000";
+    // Production default: use the Vercel app URL
+    const productionApiUrl = "https://clearlaunch-app.vercel.app";
+    console.log("Using production API URL:", productionApiUrl);
+    return productionApiUrl;
   }
 
   const API_BASE_URL = getApiUrl();
