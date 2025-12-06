@@ -12,19 +12,13 @@ import Layout from "../layouts/Layout.astro";
         class="max-w-5xl mx-auto flex items-center justify-between gap-6 py-4 px-4 sm:px-6"
       >
         <!-- Logo -->
-        <div class="flex items-center gap-2">
-          <div
-            class="h-8 w-8 rounded-full bg-gradient-to-tr from-indigo-500 via-sky-500 to-emerald-400 flex items-center justify-center shadow-lg shadow-indigo-500/20"
-          >
-            <span
-              class="text-xs font-bold tracking-tight text-slate-950 font-sans"
-              >CL</span
-            >
-          </div>
-          <span class="text-base font-bold tracking-tight font-sans"
-            >ClearLaunch</span
-          >
-        </div>
+        <a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+          <img
+            src="/ClearLaunch-logo.svg"
+            alt="ClearLaunch"
+            class="h-9 w-auto"
+          />
+        </a>
 
         <!-- Nav Links -->
         <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
@@ -678,12 +672,11 @@ import Layout from "../layouts/Layout.astro";
     class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-6"
   >
     <div class="flex items-center gap-2">
-      <div
-        class="h-6 w-6 rounded-full bg-gradient-to-tr from-indigo-500 via-sky-500 to-emerald-400 flex items-center justify-center"
-      >
-        <span class="text-[10px] font-bold text-slate-950 font-sans">CL</span>
-      </div>
-      <span class="text-sm font-semibold text-slate-300">ClearLaunch</span>
+      <img
+        src="/ClearLaunch-logo.svg"
+        alt="ClearLaunch"
+        class="h-7 w-auto"
+      />
     </div>
     <p class="text-sm text-slate-500 flex gap-4">
       <a href="/privacy-policy" class="hover:text-slate-300 transition-colors"
