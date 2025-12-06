@@ -701,35 +701,41 @@ import Layout from "../layouts/Layout.astro";
 
 <script>
   // Get API URL from environment or detect from current domain
-  // In production, the app should be at a subdomain or separate URL
-  // Set PUBLIC_API_URL in Vercel environment variables for the marketing site
+  // IMPORTANT: Set PUBLIC_API_URL in Vercel environment variables for the marketing site
+  // This should be your Next.js app's production URL (e.g., https://your-app.vercel.app)
   function getApiUrl() {
     // First, try environment variable (set in Vercel)
     if (import.meta.env.PUBLIC_API_URL) {
+      console.log("Using PUBLIC_API_URL from environment:", import.meta.env.PUBLIC_API_URL);
       return import.meta.env.PUBLIC_API_URL;
     }
     
     // In production, try to detect app URL based on current domain
+    // NOTE: This is a fallback - you should set PUBLIC_API_URL in Vercel!
     const hostname = window.location.hostname;
-    if (hostname.includes("clearlaunch.co.uk") || hostname.includes("clearlaunch.com")) {
-      // Try app subdomain first
-      if (hostname.startsWith("www.")) {
-        return "https://app.clearlaunch.co.uk";
+    const isProduction = hostname !== "localhost" && !hostname.includes("127.0.0.1");
+    
+    if (isProduction) {
+      // Try common patterns
+      if (hostname.includes("clearlaunch.co.uk")) {
+        // Try app subdomain
+        const appSubdomain = "https://app.clearlaunch.co.uk";
+        console.warn("PUBLIC_API_URL not set! Guessing app URL:", appSubdomain);
+        console.warn("Please set PUBLIC_API_URL in Vercel environment variables!");
+        return appSubdomain;
       }
-      // If already on app subdomain, use current origin
-      if (hostname.startsWith("app.")) {
-        return window.location.origin;
-      }
-      // Default to app subdomain
-      return "https://app.clearlaunch.co.uk";
     }
     
     // Development fallback
+    console.log("Using localhost for development");
     return "http://localhost:3000";
   }
 
   const API_BASE_URL = getApiUrl();
+  console.log("=== Signup Form Configuration ===");
   console.log("API Base URL:", API_BASE_URL);
+  console.log("Current hostname:", typeof window !== "undefined" ? window.location.hostname : "SSR");
+  console.log("PUBLIC_API_URL env:", import.meta.env.PUBLIC_API_URL || "NOT SET");
 
   const form = document.getElementById("signup-form");
   const emailInput = document.getElementById("signup-email");
@@ -777,7 +783,9 @@ import Layout from "../layouts/Layout.astro";
 
       const url = `${API_BASE_URL}/api/signup`;
       console.log("Attempting to fetch:", url);
+      console.log("API Base URL:", API_BASE_URL);
       console.log("Email:", email);
+      console.log("Current hostname:", window.location.hostname);
 
       try {
         const response = await fetch(url, {
@@ -820,14 +828,20 @@ import Layout from "../layouts/Layout.astro";
         console.error("Error details:", {
           name: error.name,
           message: error.message,
-          stack: error.stack
+          stack: error.stack,
+          attemptedUrl: url,
+          apiBaseUrl: API_BASE_URL
         });
         
         // Better error messages for different error types
         let errorMessage = "Something went wrong. Please try again.";
         if (error instanceof TypeError && error.message === "Failed to fetch") {
-          errorMessage = `Cannot connect to server. Please check your connection and try again.`;
-          console.error("Network error - API URL:", API_BASE_URL);
+          errorMessage = `Cannot connect to server at ${API_BASE_URL}. Please check your connection or contact support.`;
+          console.error("Network error - Failed to connect to:", url);
+          console.error("This usually means:");
+          console.error("1. The API URL is incorrect");
+          console.error("2. CORS is blocking the request");
+          console.error("3. The server is down");
         } else if (error.message) {
           errorMessage = error.message;
         }
