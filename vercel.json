@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/login",
+      "destination": "https://app.clearlaunch.co.uk/login",
+      "permanent": false
+    },
+    {
+      "source": "/sign-up",
+      "destination": "https://app.clearlaunch.co.uk/sign-up",
+      "permanent": false
+    }
+  ]
+}
