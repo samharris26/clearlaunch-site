@@ -42,25 +42,16 @@ import Layout from "../layouts/Layout.astro";
         <!-- CTA -->
         <div class="flex items-center gap-4">
           <a
-            href="#hero-form"
-            class="inline-flex items-center gap-2 rounded-full bg-slate-50 text-slate-950 text-sm font-semibold tracking-tight px-4 py-2 hover:bg-white hover:scale-105 transition-all shadow-lg shadow-slate-50/10"
-          >
-            Get early access
-          </a>
-          <!-- Hidden login/signup links for testing (accessible via URL but not visible) -->
-          <a
             href="https://app.clearlaunch.co.uk/login"
-            class="hidden"
-            aria-hidden="true"
+            class="text-slate-400 hover:text-sky-400 transition-colors text-sm font-medium"
           >
-            Login
+            Sign in
           </a>
           <a
             href="https://app.clearlaunch.co.uk/sign-up"
-            class="hidden"
-            aria-hidden="true"
+            class="inline-flex items-center gap-2 rounded-full bg-slate-50 text-slate-950 text-sm font-semibold tracking-tight px-4 py-2 hover:bg-white hover:scale-105 transition-all shadow-lg shadow-slate-50/10"
           >
-            Sign Up
+            Get started
           </a>
         </div>
       </div>
@@ -93,7 +84,7 @@ import Layout from "../layouts/Layout.astro";
                 class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"
               ></span>
             </span>
-            Accepting early access users
+            Free to start • No credit card required
           </div>
 
           <h1
@@ -113,62 +104,13 @@ import Layout from "../layouts/Layout.astro";
           </p>
 
           <div class="max-w-md mx-auto pt-4" id="hero-form">
-            <form id="signup-form" class="flex flex-col sm:flex-row gap-3">
-              <div class="flex-1 relative group">
-                <div
-                  class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
-                >
-                  <svg
-                    class="h-5 w-5 text-slate-500 group-focus-within:text-sky-400 transition-colors"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    ></path>
-                  </svg>
-                </div>
-                <input
-                  id="signup-email"
-                  type="email"
-                  placeholder="Enter your work email"
-                  class="block w-full pl-10 pr-3 py-3 border border-slate-700 rounded-lg leading-5 bg-slate-900/50 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-sky-500/50 focus:border-sky-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                  required
-                />
-              </div>
-              <button
-                id="signup-button"
-                type="submit"
-                class="inline-flex items-center justify-center px-6 py-2.5 border border-transparent text-base font-semibold rounded-lg text-slate-950 bg-sky-500 hover:bg-sky-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 focus:ring-offset-slate-900 transition-all shadow-lg shadow-sky-500/20 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <span id="signup-button-text">Get early access</span>
-                <svg
-                  id="signup-spinner"
-                  class="hidden w-5 h-5 ml-2 animate-spin"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    class="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    stroke-width="4"></circle>
-                  <path
-                    class="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
-                </svg>
-              </button>
-            </form>
-            <div id="signup-message" class="mt-3 text-xs hidden"></div>
-            <p class="mt-3 text-xs text-slate-500">
+            <a
+              href="https://app.clearlaunch.co.uk/sign-up"
+              class="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3.5 border border-transparent text-base font-semibold rounded-lg text-slate-950 bg-sky-500 hover:bg-sky-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 focus:ring-offset-slate-900 transition-all shadow-lg shadow-sky-500/20 hover:scale-105"
+            >
+              Get started free
+            </a>
+            <p class="mt-4 text-xs text-slate-500 text-center">
               Free to start. No credit card required.
             </p>
           </div>
@@ -711,9 +653,34 @@ import Layout from "../layouts/Layout.astro";
 </footer>
 
 <script>
-  // Handle smooth scrolling for anchor links with offset for sticky header
+  // Get app URL - use environment variable or detect based on hostname
+  function getAppUrl() {
+    // Check if we're in development
+    const hostname = typeof window !== "undefined" ? window.location.hostname : "";
+    const isDevelopment = hostname === "localhost" || hostname.includes("127.0.0.1");
+    
+    if (isDevelopment) {
+      // For local development, use localhost:3000 (Next.js default)
+      return "http://localhost:3000";
+    }
+    
+    // Production: use app subdomain
+    return "https://app.clearlaunch.co.uk";
+  }
+
+  const APP_URL = getAppUrl();
+
+  // Update all app links to use the correct URL
   document.addEventListener('DOMContentLoaded', function() {
-    // Handle anchor links with smooth scroll and offset
+    // Update signup/login links
+    document.querySelectorAll('a[href*="app.clearlaunch.co.uk"]').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href) {
+        link.setAttribute('href', href.replace('https://app.clearlaunch.co.uk', APP_URL));
+      }
+    });
+
+    // Handle smooth scrolling for anchor links with offset for sticky header
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
@@ -750,151 +717,4 @@ import Layout from "../layouts/Layout.astro";
       }, 100);
     }
   });
-
-  // Get API URL from environment or use default
-  // IMPORTANT: Set PUBLIC_API_URL in Vercel environment variables for the marketing site
-  // Default is the Vercel app URL, but you can override with PUBLIC_API_URL
-  function getApiUrl() {
-    // First, try environment variable (set in Vercel)
-    if (import.meta.env.PUBLIC_API_URL) {
-      console.log("Using PUBLIC_API_URL from environment:", import.meta.env.PUBLIC_API_URL);
-      return import.meta.env.PUBLIC_API_URL;
-    }
-    
-    // Check if we're in development
-    const hostname = typeof window !== "undefined" ? window.location.hostname : "";
-    const isDevelopment = hostname === "localhost" || hostname.includes("127.0.0.1");
-    
-    if (isDevelopment) {
-      console.log("Using localhost for development");
-      return "http://localhost:3000";
-    }
-    
-    // Production default: use the Vercel app URL
-    const productionApiUrl = "https://clearlaunch-app.vercel.app";
-    console.log("Using production API URL:", productionApiUrl);
-    return productionApiUrl;
-  }
-
-  const API_BASE_URL = getApiUrl();
-  console.log("=== Signup Form Configuration ===");
-  console.log("API Base URL:", API_BASE_URL);
-  console.log("Current hostname:", typeof window !== "undefined" ? window.location.hostname : "SSR");
-  console.log("PUBLIC_API_URL env:", import.meta.env.PUBLIC_API_URL || "NOT SET");
-
-  const form = document.getElementById("signup-form");
-  const emailInput = document.getElementById("signup-email");
-  const submitButton = document.getElementById("signup-button");
-  const buttonText = document.getElementById("signup-button-text");
-  const spinner = document.getElementById("signup-spinner");
-  const messageDiv = document.getElementById("signup-message");
-
-  function setLoading(isLoading) {
-    if (submitButton) submitButton.disabled = isLoading;
-    if (emailInput) emailInput.disabled = isLoading;
-    if (spinner) spinner.classList.toggle("hidden", !isLoading);
-    if (buttonText) {
-      buttonText.textContent = isLoading ? "Signing up..." : "Get early access";
-    }
-  }
-
-  function showMessage(text, type) {
-    if (!messageDiv) return;
-    messageDiv.textContent = text;
-    messageDiv.className = `mt-3 text-xs ${type === "success" ? "text-emerald-400" : "text-red-400"}`;
-    messageDiv.classList.remove("hidden");
-  }
-
-  function hideMessage() {
-    if (messageDiv) {
-      messageDiv.classList.add("hidden");
-      messageDiv.textContent = "";
-    }
-  }
-
-  if (form) {
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      hideMessage();
-
-      const email = emailInput?.value?.trim();
-
-      if (!email) {
-        showMessage("Please enter your email address.", "error");
-        return;
-      }
-
-      setLoading(true);
-
-      const url = `${API_BASE_URL}/api/signup`;
-      console.log("Attempting to fetch:", url);
-      console.log("API Base URL:", API_BASE_URL);
-      console.log("Email:", email);
-      console.log("Current hostname:", window.location.hostname);
-
-      try {
-        const response = await fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email }),
-        });
-
-        console.log("Response status:", response.status);
-        console.log("Response headers:", Object.fromEntries(response.headers.entries()));
-
-        // Better error handling for non-JSON responses
-        let data;
-        const contentType = response.headers.get("content-type");
-        if (contentType && contentType.includes("application/json")) {
-          data = await response.json();
-        } else {
-          const text = await response.text();
-          console.error("Non-JSON response:", text);
-          throw new Error("Server returned invalid response format");
-        }
-
-        if (!response.ok) {
-          throw new Error(data.error || `Server error: ${response.status}`);
-        }
-
-        // Success
-        console.log("Success!", data);
-        showMessage("Thanks! We'll be in touch soon.", "success");
-        if (emailInput) emailInput.value = "";
-
-        // Hide message after 5 seconds
-        setTimeout(() => {
-          hideMessage();
-        }, 5000);
-      } catch (error) {
-        console.error("Signup error:", error);
-        console.error("Error details:", {
-          name: error.name,
-          message: error.message,
-          stack: error.stack,
-          attemptedUrl: url,
-          apiBaseUrl: API_BASE_URL
-        });
-        
-        // Better error messages for different error types
-        let errorMessage = "Something went wrong. Please try again.";
-        if (error instanceof TypeError && error.message === "Failed to fetch") {
-          errorMessage = `Cannot connect to server at ${API_BASE_URL}. Please check your connection or contact support.`;
-          console.error("Network error - Failed to connect to:", url);
-          console.error("This usually means:");
-          console.error("1. The API URL is incorrect");
-          console.error("2. CORS is blocking the request");
-          console.error("3. The server is down");
-        } else if (error.message) {
-          errorMessage = error.message;
-        }
-        
-        showMessage(errorMessage, "error");
-      } finally {
-        setLoading(false);
-      }
-    });
-  }
 </script>
